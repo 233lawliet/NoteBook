@@ -1,0 +1,17 @@
+登陆主机：  psftp  name@ip
+关闭PSFTP: quit
+切断链接，但不关闭PSFTP:  close
+
+cd:远程进入文档
+lcd:本地进入文档
+pwd:远程路径
+lpwd:本地路径
+
+get fileName:下载远程文件
+put fileName:上传本地文件
+
+
+
+mkdir dirName:创建文件夹
+rmdir dirName:删除文件夹
+
