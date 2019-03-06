@@ -196,9 +196,64 @@
 ![](https://i.imgur.com/ZLR5xTz.png)
 
 
+## 3.5 HDFS数据的读写过程 ##
+
+
+### 读取过程 ###
+
+![](https://i.imgur.com/f1ebyxS.png)
+
+
+
+1. 加载配置到FS
+    - 加载两个配置文件
+       ![](https://i.imgur.com/AyHcZ5B.png) 
+
+2. NameNode获取数据块的节点
+
+    ![](https://i.imgur.com/qI1KpNE.png)
+
+3. 客户端读取NameNode的反馈请求
+    - 根据远近排序查看请求
+
+    ![](https://i.imgur.com/Brk9GmV.png)
+
+4. 读取datanode数据
+
+    ![](https://i.imgur.com/F8iu4tZ.png)
+
+5. 数据在块中未读完，在其访问NameNode,获取节点信息
+6. 客户端反馈
+7. 读取dataNode数据
+8. 以此循环……
 
 
 
 
 
--1
+### 写入过程 ###
+
+![](https://i.imgur.com/kFot45R.png)
+
+1. 创建文件请求
+
+2. 调用RPC，检查创建文件
+    - 检查文件是否存在
+    - 检查是否有权限创建文件
+
+3. 写入数据
+    - **流水线**复制
+        - 保存这些数据为包，包打包给数据包发给第一节点，第一节点给第二节点，以此下去 
+4. 写入数据包
+5. 接收数据包确认
+    - 最后节点一次往前传，最后依次收到，确定收到
+
+6. 关闭文件
+
+## 3.7编程实战 ##
+
+null
+
+
+
+- 
